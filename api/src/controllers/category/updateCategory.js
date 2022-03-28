@@ -1,18 +1,18 @@
-const Category = require("../../models/Category");
+// const Category = require("../../models/Category");
 
-// Update Category. Recibe un id por params, la info a modificar por body y edita dicha categoria
-//RECORDAR CONSULTAR SI SE QUIERE CAMBIAR A ESTADO UPDATE EL STATUS DE LAS CATEGORIAS
-module.exports = async (req, res, next) => {
-  const { id } = req.params;
-  const {name} = req.body;
+// // Update Category. Recibe un id por params, la info a modificar por body y edita dicha categoria
+// //RECORDAR CONSULTAR SI SE QUIERE CAMBIAR A ESTADO UPDATE EL STATUS DE LAS CATEGORIAS
+// module.exports = async (req, res, next) => {
+//   const { id } = req.params;
+//   const {name} = req.body;
 
-  try {
-    let category = await Category.findOneAndUpdate({ _id: id }, {name:name}, {
-      new: true,
-    });
-   
-    res.json({ msg: "Category updated", category });
-  } catch (err) {
-    next(err);
-  }
-};
+//   try {
+//     let category = await Category.findOneAndUpdate({ _id: id }, {name:name}, {
+//       new: true,
+//     });
+
+//     res.json({ msg: "Category updated", category });
+//   } catch (err) {
+//     next(err);
+//   }
+// };

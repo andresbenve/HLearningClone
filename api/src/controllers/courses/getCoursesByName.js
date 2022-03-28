@@ -1,24 +1,24 @@
-const Course = require("../../models/Course");
-const Category = require("../../models/Category");
-const Review = require("../../models/Review");
-const User = require("../../models/User");
+// const Course = require("../../models/Course");
+// const Category = require("../../models/Category");
+// const Review = require("../../models/Review");
+// const User = require("../../models/User");
 
-module.exports = async (req, res, next) => {
-  const { name } = req.query;
-  try {
-    let includeName = await Course.find({ title: new RegExp(name, "i"), status: "Confirmed" });
-    includeName = await Category.populate(includeName, {path: "categories"});
-    includeName = await Review.populate(includeName, {path: "score"});
-    includeName = await User.populate(includeName, {path: "students"}); 
+// module.exports = async (req, res, next) => {
+//   const { name } = req.query;
+//   try {
+//     let includeName = await Course.find({ title: new RegExp(name, "i"), status: "Confirmed" });
+//     includeName = await Category.populate(includeName, {path: "categories"});
+//     includeName = await Review.populate(includeName, {path: "score"});
+//     includeName = await User.populate(includeName, {path: "students"});
 
-    // SI ME PASAN UN NAME VACÍO O QUE NO EXISTE
-    if(name.length === 0 || includeName.length === 0) {
-      res.json({ msg: "Please insert a valid course name to search" })
-    } else {
-      res.json(includeName)
-    }
-  } catch (error) {
-    console.log(error);
-    return next();
-  }
-};
+//     // SI ME PASAN UN NAME VACÍO O QUE NO EXISTE
+//     if(name.length === 0 || includeName.length === 0) {
+//       res.json({ msg: "Please insert a valid course name to search" })
+//     } else {
+//       res.json(includeName)
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return next();
+//   }
+// };
