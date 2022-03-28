@@ -49,10 +49,10 @@ const Navbar = () => {
         <Bars />
         <NavMenu>
           <NavLink to="/home">Esculturas</NavLink>
-          <select name="select">
+          <select name="select" defaultValue="DEFAULT">
             <option value="Vestidos Largos">Vestidos Largos</option>
             <option value="value3">Vestidos Cortos</option>
-            <option value="value2" selected>
+            <option value="DEFAULT" disabled>
               Vestidos
             </option>
           </select>
