@@ -14,10 +14,13 @@ import Footer from "../Footer/Footer";
 import { Box } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { getUserInfo } from "../../redux/actions/userActions";
 
 
 export default function AdmUsers() {
   const dispatch = useDispatch();
+
+  
 
   const allUsers = useSelector((state) => state.getUser.getAllUsers);
   const [currentId, setCurrentId] = useState(null);
@@ -27,6 +30,7 @@ export default function AdmUsers() {
 
 
   useEffect(() => {
+    dispatch(getUserInfo());
     dispatch(getAllUsers());
   }, [dispatch, currentId]);
 

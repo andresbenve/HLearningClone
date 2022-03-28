@@ -14,16 +14,19 @@ const orders = require("./src/utils/mockUps/orderConObjectId.json");
 const Course = require("./src/models/Course");
 const courses = require("./src/utils/mockUps/coursesConObjectId.json");
 const Cart = require("./src/models/Cart");
-const carts = require("./src/utils/mockUps/cartsConObjectId.json")
+const carts = require("./src/utils/mockUps/cartsConObjectId.json");
 const morgan = require("morgan");
-const multer = require("multer");           
+const multer = require("multer");
 const session = require("express-session");
 const passport = require("passport");
 const path = require("path");
-require("./src/utils/auth/passport");
-require("dotenv").config();
-const { DB_URL, PORT, SECRET_KEY } = process.env;
+const exphbs = require("express-handlebars");
 
+require("./src/utils/auth/passport");
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || "development"}`,
+});
 
 //Crea el servidor
 const app = express();
@@ -39,7 +42,7 @@ app.use(
 app.use(passport.initialize());
 app.use(
   session({
-    secret:SECRET_KEY,
+    secret: "miclavesecreta",
     saveUninitialized: false,
     resave: false,
   })
@@ -67,21 +70,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Multer para guardar "imagenes"
-app.set('Register', path.join())
+app.set("Register", path.join());
 const storage = multer.diskStorage({
-     destination: path.join(__dirname, 'cloudi/uploads'),
-     filename: (req, file, cb) => {
-         cb(null, new Date().getTime() + path.extname(file.originalname))  
-     }
-})
-app.use(multer({ storage }).single('pictures'))
+  destination: path.join(__dirname, "cloudi/uploads"),
+  filename: (req, file, cb) => {
+    cb(null, new Date().getTime() + path.extname(file.originalname));
+  },
+});
+app.use(multer({ storage }).single("pictures"));
 
 //Rutas de la server
 app.use("/", routers);
 
 // DB Config
-const db =  DB_URL
-const port = PORT || 9000
+const db = process.env.MONGO_URI;
+const port = process.env.PORT || 7070;
 
 // Connect to MongoDB
 mongoose
@@ -94,15 +97,15 @@ app.listen(port, async () => {
 
   // Mock Ups
   // const data = await Category.insertMany(categories)
-  
+
   // const data2 = await User.insertMany(users)
-  
+
   //  const data3 = await Review.insertMany(reviews)
-  
+
   //  const data4 = await Order.insertMany(orders)
- 
+
   //  const data5 = await Course.insertMany(courses)
-  
+
   // const data6 = await Cart.insertMany(carts)
   //  console.log(data6,"q me devuelve")
 });

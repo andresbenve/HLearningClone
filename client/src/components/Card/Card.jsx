@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loadState,saveState } from "../../localStorage";
+import { loadState, saveState } from "../../localStorage";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
@@ -33,7 +33,6 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-
 export default function CourseCard({
   id,
   title,
@@ -43,7 +42,6 @@ export default function CourseCard({
   price,
   course,
 }) {
-
   const dispatch = useDispatch();
 
   const [expanded, setExpanded] = useState(false);
@@ -58,25 +56,20 @@ export default function CourseCard({
 
   return (
     <Box p={1}>
-      <Card
-        elevation={6}
-      >
+      <Card elevation={0}>
         <Typography sx={{ mb: 1 }} paddingLeft={1} variant="h6">
           {title}
         </Typography>
         <CardMedia
           title={title}
           component="img"
-          height="180"
+          height="300"
           image={image}
           alt="img video"
         />
-        <CardContent>
-          <Rating name="read-only" readOnly value={calculeScore(score)} />
-        </CardContent>
         <Typography
           textAlign="center"
-          variant="h5"
+          variant="h6"
           component="div"
           noWrap={true}
         >
@@ -89,17 +82,16 @@ export default function CourseCard({
                 saveState(course);
                 setAddCart(!addCart);
                 Swal.fire({
-                  position: "center",                
+                  position: "center",
                   title: "Agregado al carrito",
                   icon: "info",
                   showConfirmButton: false,
-                  timer: 1000
+                  timer: 1000,
                 });
-                
               }}
             >
-            <AddShoppingCartIcon />
-            <Typography > Agregar al carrito</Typography>
+              <AddShoppingCartIcon />
+              <Typography> Agregar</Typography>
             </IconButton>
           </CardActions>
         )}

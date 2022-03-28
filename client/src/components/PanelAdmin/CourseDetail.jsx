@@ -10,21 +10,21 @@ import axios from "axios";
 import swal from "sweetalert";
 
 function validate(state) {
-  let errors = {};
-  if (!state.title) {
-    errors.title = "Ingresar un titulo";
-  } else if (!state.description) {
-    errors.description = "Ingresar descripción";
-  } else if (state.price < 1000) {
-    errors.price = "El precio debe superar los $ 1.000";
-    if (!state.price) {
-      errors.price = "Ingresar un precio";
+    let errors = {};
+    if (!state.title) {
+      errors.title = "Ingresar un titulo";
+    } else if(!state.description){
+        errors.description = "Ingresar descripción"
+    } else if(state.price < 1000){
+        errors.price = "El precio debe superar los $ 1.000"
+        if(!state.price){
+            errors.price = "Ingresar un precio"
+        }
+    } else if(!state.duration){
+        errors.duration = "Ingresar duración estimada"
     }
-  } else if (!state.duration) {
-    errors.duration = "Ingresar duración estimada";
+    return errors;
   }
-  return errors;
-}
 
 export default function CourseDetail() {
   const dispatch = useDispatch();
@@ -32,16 +32,14 @@ export default function CourseDetail() {
   const courseDetailed = useSelector(
     (state) => state.getDetails.getCourseDetail
   );
-  const allCategories = useSelector(
-    (state) => state.getCategories.getAllCategories
-  );
+  const allCategories = useSelector((state) => state.getCategories.getAllCategories)
   const [disabledInput, setInputsDisabled] = useState(true);
   const [errors, setErrors] = useState({});
-  console.log("Curso Detallado", courseDetailed);
+console.log("Curso Detallado", courseDetailed)
 
   useEffect(() => {
     dispatch(getDetailCourses(id)); // eslint-disable-next-line
-    dispatch(getAllCategories());
+    dispatch(getAllCategories())
   }, [dispatch]);
 
   const [state, setState] = useState({
@@ -52,52 +50,50 @@ export default function CourseDetail() {
     img: courseDetailed?.img,
   });
 
-  const { REACT_APP_CLOUD_NAME } = process.env;
-  const { REACT_APP_UPLOAD_PRESET } = process.env;
-  const cloud_name = REACT_APP_CLOUD_NAME;
-  const upload_preset = REACT_APP_UPLOAD_PRESET;
+  const cloud_name = 'dkkwjslk9';
+	const upload_preset = 'kzhe1mvq';
 
-  const [imageUrl, setImageUrl] = useState(courseDetailed.img);
+	const [imageUrl, setImageUrl] = useState(courseDetailed.img);
 
-  const handleCloud = (e) => {
+	const handleCloud = (e) => {
     e.preventDefault();
-    const { files } = document.querySelector(".app_uploadInput");
-    const formData = new FormData();
-    formData.append("file", files[0]);
-    formData.append("upload_preset", upload_preset);
-    const options = {
-      method: "POST",
-      body: formData,
-    };
-    return fetch(
-      `https://api.Cloudinary.com/v1_1/${cloud_name}/image/upload`,
-      options
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setImageUrl(res.secure_url);
+		const { files } = document.querySelector('.app_uploadInput');
+		const formData = new FormData();
+		formData.append('file', files[0]);
+		formData.append('upload_preset', upload_preset);
+		const options = {
+			method: 'POST',
+			body: formData
+		};
+		return fetch(
+			`https://api.Cloudinary.com/v1_1/${cloud_name}/image/upload`,
+			options
+		)
+			.then((res) => res.json())
+			.then((res) => {
+				setImageUrl(res.secure_url); 
         setState({
-          ...state,
-          img: res.secure_url,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-
-  let initialOptions = courseDetailed.categories?.map((c) => {
-    return {
-      label: c?.name,
-      value: c?._id,
-    };
-  });
-  const [selected, setSelected] = useState(initialOptions);
-
-  let options = allCategories.map((c) => {
-    return {
-      label: c.name,
-      value: c._id,
-    };
-  });
+          ...state, 
+          img: res.secure_url
+        })
+			})
+			.catch((err) => console.log(err));
+	};
+  
+  let initialOptions = courseDetailed.categories?.map(c => {
+      return {
+          label: c?.name,
+          value: c?._id
+        }
+    })
+    const [selected, setSelected] = useState(initialOptions);
+    
+  let options = allCategories.map(c => {
+      return {
+          label: c.name,
+          value: c._id
+      }
+  })
 
   const handleInputChange = (e) => {
     setState({
@@ -105,52 +101,48 @@ export default function CourseDetail() {
       [e.target.name]: e.target.value,
     });
     setErrors(
-      validate({
-        ...state,
-        [e.target.name]: e.target.value,
-      })
-    );
+        validate({
+          ...state,
+          [e.target.name]: e.target.value,
+        })
+      );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setState({
-      ...state,
-      categories: selected.map((el) => {
-        return el?.value;
-      }),
-    });
+        setState({
+        ...state,
+        categories: selected.map(el => {
+            return el?.value
+        })
+    })
     try {
-      const { data, request } = await axios.put(`/courses/update/${id}`, {
-        state,
-        selected,
-      });
-      if (request.status === 200) {
-        await swal(
-          "La información del curso ha sido actualizada",
-          "Presione para continuar",
-          "success"
-        ).then(res=>((window.location.href = `/courses/${id}`)));
-      }
+        const {data, request} = await axios.put(`/courses/update/${id}`, {
+            state,
+            selected
+        });
+        if(request.status === 200){
+            await swal("La información del curso ha sido actualizada", "Presione para continuar", "success");
+        }
     } catch (error) {
-      await swal(
-        `${error.response.data.error}`,
-        "Presione para continuar",
-        "error"
-      );
+        await swal(`${error.response.data.error}`, "Presione para continuar", "error")
     }
-  };
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
     setInputsDisabled(!disabledInput);
   };
 
+
   return (
     <div>
       <Navbar />
       <div className={s.cont}>
-        <form className={s.formulario} onSubmit={(e) => handleSubmit(e)}>
+        <form
+          className={s.formulario}
+          onSubmit={(e)=>handleSubmit(e)}
+        >
           <h1>Detalle del Curso</h1>
           <div className={s.contenedor}>
             <button onClick={(e) => handleClick(e)}>Editar</button>
@@ -166,7 +158,7 @@ export default function CourseDetail() {
                 required
                 disabled={disabledInput}
               />
-              {errors.title && <p>{errors.title}</p>}
+               {errors.title && <p>{errors.title}</p>}
             </div>
             <div className={s.inputContenedor}>
               <i className="fas fa-user icon"></i>
@@ -211,31 +203,55 @@ export default function CourseDetail() {
               {errors.duration && <p>{errors.duration}</p>}
             </div>
             <div className="app">
-              <input type="file" className="app_uploadInput" />
-              <img
-                src={imageUrl}
-                width="600px"
-                height="400px"
-                className="app_uploadedImg"
-                alt=""
+			      <input type="file" className="app_uploadInput" />
+			      <img src={imageUrl} width="600px" height="400px" className="app_uploadedImg" alt="" />
+			      <button className="app_uploadButton" onClick={(e)=>handleCloud(e)}>
+				     Cargar imagen
+			      </button>
+		        </div>
+            {/* <div className={s.inputContenedor}>
+              <i className="fas fa-user icon"></i>
+              <input
+                className={s.input}
+                type="text"
+                value={state.img}
+                name="img"
+                placeholder="Inserte URL de la imagen"
+                onChange={(e) => handleInputChange(e)}
+                required
+                disabled={disabledInput}
               />
-              <button
-                className="app_uploadButton"
-                onClick={(e) => handleCloud(e)}
-              >
-                Cargar imagen
-              </button>
-            </div>
+            </div> */}
             {
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={setSelected}
-                labelledBy="Select"
-              />
+                <MultiSelect 
+                    options={options}
+                    value={selected}
+                    onChange={setSelected}
+                    labelledBy="Select"
+                />
             }
+            {/* {
+                courseDetailed.videos ? 
+                courseDetailed.videos.map(v => {
+                    return (
+                        <div className={s.inputContenedor}>
+              <i className="fas fa-user icon"></i>
+              <input
+                className={s.input}
+                type="text"
+                value={state.videos.duration}
+                name="img"
+                placeholder="Inserte URL de la imagen"
+                onChange={(e) => handleInputChange(e)}
+                required
+                disabled={disabledInput}
+              />
+            </div>
+                    )
+                }) : ""
+            } */}
 
-            <input className={s.button} type="submit" value="Editar" />
+            <input className={s.button} type="submit" value="Registrate" />
           </div>
         </form>
       </div>

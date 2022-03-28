@@ -39,58 +39,5 @@ export default function Orders({ setCurrentPage, filtered }) {
     setOrderPrice(e.target.value);
   };
 
-  return (
-    <div>
-      <Stack direction="row" spacing={3}>
-        <Box sx={{ minWidth: 110 }}>
-          <FormControl fullWidth size="small">
-            <InputLabel id="select-name">Nombre</InputLabel>
-            <Select
-              labelId="select-name"
-              id="select-name"
-              label="Name"
-              placeholder="Nombre"
-              onChange={(e) => handleChangeName(e)}
-              value={orderName}
-            >
-              <MenuItem value="A-Z">A-Z</MenuItem>
-              <MenuItem value="Z-A">Z-A</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <br />
-        <Box sx={{ minWidth: 160 }}>
-          <FormControl fullWidth size="small">
-            <InputLabel id="select-score">Popularidad</InputLabel>
-            <Select
-              labelId="select-score"
-              id="select-score"
-              label="Score"
-              onChange={(e) => handleChangeScore(e)}
-              value={orderScore}
-            >
-              <MenuItem value="Asc">Mayor popularidad</MenuItem>
-              <MenuItem value="Desc">Menor popularidad</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <br />
-        <Box sx={{ minWidth: 100 }}>
-          <FormControl fullWidth size="small">
-            <InputLabel id="select-price">Precio</InputLabel>
-            <Select
-              labelId="select-price"
-              id="select-price"
-              label="Price"
-              onChange={(e) => handleChangePrice(e)}
-              value={orderPrice}
-            >
-              <MenuItem value="Asc">Mayor precio</MenuItem>
-              <MenuItem value="Desc">Menor precio</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </Stack>
-    </div>
-  );
+  return <div></div>;
 }

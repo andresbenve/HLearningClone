@@ -19,6 +19,11 @@ import createOrder from "../../redux/actions/createOrder";
 import Swal from "sweetalert2";
 import MercadoPago from "../../redux/actions/MercadoPago";
 
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(0.5),
+}));
+
 function auth(authentification, cartAll) {
   let cartStorage = loadState();
 if (authentification) {
@@ -32,19 +37,14 @@ if (authentification) {
 
 function Cart() {
   const dispatch = useDispatch();
-  const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(0.5),
-  }));
-
+  
   const [remove, setRemove] = useState(false);
-
+  
   useEffect(() => {
 
     if (userDetail._id) dispatch(fusionCart(userDetail._id));
-
   }, [dispatch, auth]);
-
+  
   let cartAll = useSelector((state) => state.cartReducer.allCart);
   let authentification = useSelector(
     (state) => state.userReducer.isAuthenticated

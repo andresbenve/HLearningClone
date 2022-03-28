@@ -14,11 +14,11 @@ export default function CarruselPics() {
   }
 
   useEffect(() => {
-      let suscription = setTimeout(nextSlide, 3000); // eslint-disable-next-line
-    
+    let suscription = setTimeout(nextSlide, 3000); // eslint-disable-next-line
+
     return function cleanup() {
       clearTimeout(suscription);
-  }
+    };
   }, [slideIndex]);
 
   return (

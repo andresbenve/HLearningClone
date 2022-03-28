@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../redux/actions/getAllCourses";
 import { clearFilters } from "../../redux/actions/clearFilters";
+import { getUserInfo } from "../../redux/actions/userActions";
 import { Grid, Typography } from "@material-ui/core";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import NavBar from "../NavBar/NavBar";
@@ -13,7 +14,6 @@ import Orders from "../Orders/Orders";
 import Filters from "../Filters/Filters";
 import SearchBar from "../SearchBar/SearchBar";
 import Paper from "@mui/material/Paper";
-
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -34,20 +34,19 @@ export default function Courses() {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
- 
+
   useEffect(() => {
+    dispatch(getUserInfo());
     dispatch(getAllCourses());
     dispatch(clearFilters());
   }, [dispatch]);
 
   let Courses;
 
-
-   
   filterName === "Filter By"
     ? (Courses = allCourses)
     : (Courses = filteredCourses);
-  console.log("COURSES", Courses); 
+  console.log("COURSES", allCourses);
   //Paginado:
   const [currentPage, setCurrentPage] = useState(1);
   const [coursesPerPage /* setCoursesPerPage */] = useState(4);

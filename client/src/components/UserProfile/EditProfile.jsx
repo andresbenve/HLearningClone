@@ -30,11 +30,8 @@ export default function EditProfile() {
     pictures: User.pictures,
   });
   
-  const { REACT_APP_CLOUD_NAME } = process.env;
-  const { REACT_APP_UPLOAD_PRESET } = process.env;
-  const cloud_name = REACT_APP_CLOUD_NAME;
-	const upload_preset = REACT_APP_UPLOAD_PRESET;
-
+  const cloud_name = 'dkkwjslk9';
+	const upload_preset = 'kzhe1mvq';
 
 	const [imageUrl, setImageUrl] = useState(User.pictures);
 
@@ -89,7 +86,7 @@ export default function EditProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postEditUser(state, User._id))   
+    dispatch(postEditUser(state, User._id))
   }
 
   const handleClick = (e) => {
@@ -162,8 +159,22 @@ export default function EditProfile() {
 			      <button className="app_uploadButton" onClick={(e)=>handleCloud(e)}>
 				    Cargar imagen
 			      </button>
-		        </div>           
-            <input className={s.button} type="submit" value="Editar" />
+		        </div>
+
+            {/* <div className={s.inputContenedor}>
+            <input
+              className={s.input}
+              type="text"
+              value={state.pictures}
+              name="pictures"
+              placeholder="URL Imagen"
+              onChange={(e) => handleInputChange(e)}
+              required
+              disabled={disabledInput}
+            />
+            {errors.pictures && <p>{errors.pictures}</p>}
+          </div> */}
+            <input className={s.button} type="submit" value="Registrate" />
           </div>
         </form>
       </div>

@@ -9,8 +9,9 @@ import {
   NavMenu,
   NavBtn,
   NavBtnLink,
+  select,
 } from "./NavbarElements";
-import Logo from "../../images/Hlearning.png";
+import Logo from "../../images/benveba.png";
 import Account from "./Account";
 import Avatar from "@mui/material/Avatar";
 import { blue } from "@mui/material/colors";
@@ -43,12 +44,19 @@ const Navbar = () => {
     <>
       <Nav>
         <NavLink to="/">
-          <img src={Logo} alt="logo" height="60" width="60" />
+          <img src={Logo} alt="logo" height="140" width="140" />
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to="/home">Inicio</NavLink>
-          <NavLink to="/courses">Cursos</NavLink>
+          <NavLink to="/home">Esculturas</NavLink>
+          <select name="select">
+            <option value="Vestidos Largos">Vestidos Largos</option>
+            <option value="value3">Vestidos Cortos</option>
+            <option value="value2" selected>
+              Vestidos
+            </option>
+          </select>
+
           <NavLink to="/contact">Contacto</NavLink>
           {authentification ? <NavLink to="/user">Mi Cuenta</NavLink> : <></>}
           <NavLink to="/cart">

@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import emailjs from "emailjs-com";
 import { useState } from "react";
+import { getUserInfo } from "../../redux/actions/userActions";
 import s from "./contact.module.css";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-
-const { REACT_APP_EMAIL_TEMPLATE  } = process.env ;
-const { REACT_APP_EMAIL_USER } = process.env ;
-const template = REACT_APP_EMAIL_TEMPLATE ;
-const user = REACT_APP_EMAIL_USER ;
+import { useDispatch } from "react-redux";
 
 const Result = () => {
   return (
@@ -18,6 +15,12 @@ const Result = () => {
   );
 };
 export default function Contact() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
+
   const [result, showresult] = useState(false);
   const sendEmail = (e) => {
     e.preventDefault();
@@ -25,9 +28,9 @@ export default function Contact() {
     emailjs
       .sendForm(
         "gmail",
-        template,
+        "template_or9mjrn",
         e.target,
-        user
+        "user_GdBu7T9DTHFnIo5cvAyNk"
       )
       .then(
         (result) => {
@@ -74,21 +77,7 @@ export default function Contact() {
                     <br />
                   </div>
                   <div className={s.formWords}>
-                    <p className={s.parrafito}>
-                      Hola como estas! un gusto tenerte por aqui.{" "}
-                    </p>
-                    <p>
-                      Este formulario fue creado para que puedas contactarte con
-                      el soporte de HLearning y asi poder ayudarte con tus dudas
-                      o inconvenientes.
-                    </p>
-                    <p>
-                      Luego de que completes este formulario, nos pondremos en
-                      contacto contigo via Email, te pedimos por favor que nos
-                      dejes informacion detallada del problema surgido, para asi
-                      poder brindarte una mejor atención! muchisimas gracias!
-                    </p>
-                    <p>Soporte de HLearning</p>
+                    <p>Soporte de Benve</p>
 
                     <button>SUBMIT</button>
                     <div className={s.row}>{result ? <Result /> : null}</div>

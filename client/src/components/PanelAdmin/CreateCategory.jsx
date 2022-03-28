@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import {  Formik } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
@@ -7,6 +7,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Footer from '../Footer/Footer';
+import { useDispatch } from "react-redux";
+import { getUserInfo } from "../../redux/actions/userActions";
+import NavBar from "../NavBar/NavBar";
 
 const schemaValidate = Yup.object().shape({
   name: Yup.string()
@@ -15,10 +18,17 @@ const schemaValidate = Yup.object().shape({
 
 
 function CreateCategory() { 
+   const dispatch = useDispatch()
+   useEffect(() => {
+      dispatch(getUserInfo());
+      }
+    , [dispatch])
+
 
   return(
 
     <div>
+      <NavBar />
       <Formik
         initialValues={{
           name: ""

@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../redux/actions/getAllCategories";
+import { getUserInfo } from "../../redux/actions/userActions";
 import { FieldArray, Formik } from "formik";
 import swal from "sweetalert";
 import axios from "axios";
@@ -71,11 +72,13 @@ const categories = (allcategories) => {
 };
 
 function CreateCourse() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+  dispatch(getUserInfo());
+  }, [dispatch])
 
-  const { REACT_APP_CLOUD_NAME } = process.env;
-  const { REACT_APP_UPLOAD_PRESET } = process.env;
-  const cloud_name = REACT_APP_CLOUD_NAME;
-	const upload_preset = REACT_APP_UPLOAD_PRESET;
+  const cloud_name = 'dkkwjslk9';
+	const upload_preset = 'kzhe1mvq';
 
 	const [imageUrl, setImageUrl] = useState(
 		'https://i.ytimg.com/vi/7TKY-jksHRQ/maxresdefault.jpg'
@@ -103,7 +106,7 @@ function CreateCourse() {
 			.catch((err) => console.log(err));
 	};
 
-  const dispatch = useDispatch();
+  
   const getAllCategory = useSelector(
     (state) => state.getCategories.getAllCategories
   );

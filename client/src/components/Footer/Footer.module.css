@@ -1,18 +1,20 @@
 .footer {
   min-height: 120px;
 
-  color: #fff;
+  max-height: 2000px;
+  color: #000;
   /* background: #4c3c90; */
   /*  background: #000d6b; */
   /* background: #091353; */
-  background: #000000;
+  background: #fff;
   height: -webkit-fill-available;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
+
 .footer .linea {
-  background-color: #fff;
+  background-color: #000;
   width: 1px;
   height: 60%;
 }
@@ -37,6 +39,7 @@
 }
 .footer .derechos {
   text-align: center;
+  font-style: italic;
   width: calc(100% / 3);
 }
 

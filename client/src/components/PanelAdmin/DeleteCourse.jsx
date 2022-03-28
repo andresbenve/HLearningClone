@@ -8,7 +8,7 @@ import Card from "./CardDelete";
 import Paginate from "../Paginate/Paginate";
 import Button from "@mui/material/Button";
 import Swal from "sweetalert2";
-
+import { getUserInfo } from "../../redux/actions/userActions";
 import { Grid, Typography } from "@material-ui/core";
 
 import { experimentalStyled as styled } from "@mui/material/styles";
@@ -35,6 +35,8 @@ export default function Courses() {
   };
 
   useEffect(() => {
+
+dispatch(getUserInfo());
     dispatch(getAllCourses());
   }, [dispatch, currentId]);
 

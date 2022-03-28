@@ -38,45 +38,5 @@ export default function Filters({ setCurrentPage }) {
     setFilterPrice(e.target.value);
   }
 
-  return (
-    <div>
-      <Stack direction="row" spacing={3}>
-        <Box sx={{ minWidth: 130 }}>
-          <FormControl fullWidth size="small">
-            <InputLabel id="simple-select-name">Categorías</InputLabel>
-            <Select
-              labelId="simple-select-name"
-              id="select"
-              label="Categories"
-              onChange={(e) => handleSelectCategories(e)}
-              value={filterCategories}
-            >
-              {categories.map((c) => (
-                <MenuItem value={c._id} key={c._id}>
-                  {c.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-        <Box sx={{ minWidth: 100 }}>
-          <FormControl fullWidth size="small">
-            <InputLabel id="simple-select-price">Precio</InputLabel>
-            <Select
-              labelId="simple-select-price"
-              id="select"
-              label="Price"
-              onChange={(e) => handlePriceByRange(e)}
-              value={filterPrice}
-            >
-              <MenuItem value={1200}>$1000 - $1500</MenuItem>
-              <MenuItem value={1600}>$1500 - $2000</MenuItem>
-              <MenuItem value={2200}>$2000 - $2500</MenuItem>
-              <MenuItem value={2550}>+ $2500</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </Stack>
-    </div>
-  );
+  return <div></div>;
 }

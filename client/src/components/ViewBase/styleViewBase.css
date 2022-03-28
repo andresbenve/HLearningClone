@@ -114,15 +114,15 @@
   }
 }
 
-.prueba{
-  background-image: url('../../images/bk4.jpg');
+.prueba {
+  background-color: orangered;
   background-size: cover;
 }
-.prueba2{
+.prueba2 {
   background-color: rgb(37, 37, 37);
   background-size: cover;
 }
-.icons{
+.icons {
   color: white;
   display: flex;
   justify-content: center;
