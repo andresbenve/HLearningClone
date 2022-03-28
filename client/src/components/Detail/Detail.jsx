@@ -54,16 +54,15 @@ export default function CourseDetail(props) {
         <div>
           <NavBar />
           {isAdmin ? (
-          <IconButton
-                color="primary"
-                aria-label="edit"
-                component={Link}
-                to={`/coursedetail/${id}`}
-              > 
+            <IconButton
+              color="primary"
+              aria-label="edit"
+              component={Link}
+              to={`/coursedetail/${id}`}
+            >
               Edit course
               <EditIcon />
-              </IconButton>
-            
+            </IconButton>
           ) : (
             ""
           )}

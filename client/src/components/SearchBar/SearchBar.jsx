@@ -27,7 +27,7 @@ export default function SearchBar() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    
+
     dispatch(getAllCourses());
     dispatch(clearFilters());
   };
@@ -50,7 +50,11 @@ export default function SearchBar() {
               onChange={(e) => handleInputChange(e)}
               value={name}
             />
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "#000" }}
+            >
               <SearchIcon />
             </Button>
           </Stack>

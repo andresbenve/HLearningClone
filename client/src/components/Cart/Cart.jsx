@@ -26,7 +26,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function auth(authentification, cartAll) {
   let cartStorage = loadState();
-if (authentification) {
+  if (authentification) {
     let cart = cartAll;
     return cart;
   } else {
@@ -37,14 +37,13 @@ if (authentification) {
 
 function Cart() {
   const dispatch = useDispatch();
-  
-  const [remove, setRemove] = useState(false);
-  
-  useEffect(() => {
 
+  const [remove, setRemove] = useState(false);
+
+  useEffect(() => {
     if (userDetail._id) dispatch(fusionCart(userDetail._id));
   }, [dispatch, auth]);
-  
+
   let cartAll = useSelector((state) => state.cartReducer.allCart);
   let authentification = useSelector(
     (state) => state.userReducer.isAuthenticated
@@ -129,16 +128,17 @@ function Cart() {
                               {authentification ? (
                                 <IconButton
                                   color="secondary"
-                                    onClick={() => {
-                                      dispatch(
-                                        actualizeCart(
-                                          cart,
-                                          course._id,
-                                          userDetail._id
-                                        )
-                                      );
-                                    }}  >
-                                  <DeleteForeverIcon/>
+                                  onClick={() => {
+                                    dispatch(
+                                      actualizeCart(
+                                        cart,
+                                        course._id,
+                                        userDetail._id
+                                      )
+                                    );
+                                  }}
+                                >
+                                  <DeleteForeverIcon />
                                 </IconButton>
                               ) : (
                                 <IconButton
@@ -179,15 +179,16 @@ function Cart() {
                   variant="contained"
                   color="primary"
                   onClick={handleCreateorder}
+                  style={{ backgroundColor: "#000" }}
                 >
-                  Ordena tus Cursos
+                  Ordena tus Vestidos
                 </Button>
               </Box>
             </Box>
           </Box>
         </Paper>
       </Container>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

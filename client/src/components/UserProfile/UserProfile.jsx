@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getSignOut } from "../../redux/actions/userActions";
-import { getUserInfo } from "../../redux/actions/userActions"
+import { getUserInfo } from "../../redux/actions/userActions";
 import Paper from "@mui/material/Paper";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
@@ -23,7 +23,7 @@ export default function UserProfile() {
   const isAuthenticated = useSelector(
     (state) => state.userReducer.isAuthenticated
   );
-  console.log(User, "user")
+  console.log(User, "user");
   useEffect(() => {
     dispatch(getUserInfo());
   }, [dispatch]);
@@ -32,7 +32,6 @@ export default function UserProfile() {
     e.preventDefault();
     dispatch(getSignOut());
   };
-
 
   return (
     <div>
@@ -44,7 +43,7 @@ export default function UserProfile() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              m:3
+              m: 3,
             }}
           >
             <Typography
@@ -53,25 +52,19 @@ export default function UserProfile() {
               color="text.primary"
               m={3}
             >
-             <b> Bienvenido a HLearning !</b>
-             <br>
-             </br>
-             <b> {User.name} </b>
+              <b> Bienvenido a HLearning !</b>
+              <br></br>
+              <b> {User.name} </b>
             </Typography>
-            <Box 
-              display="flex" 
-              justifyContent="flex-end" 
-              width="100%" 
-              mr={15}
-            >
+            <Box display="flex" justifyContent="flex-end" width="100%" mr={15}>
               <IconButton
                 color="primary"
                 aria-label="edit"
                 component={Link}
                 to={`/editprofile`}
-              > 
-              Edit profile
-              <EditIcon />
+              >
+                Edit profile
+                <EditIcon />
               </IconButton>
             </Box>
             <Box
@@ -134,22 +127,19 @@ export default function UserProfile() {
                     >
                       Cerrar sesion
                     </Button>
-                  ) : (
-                    null
-                  )}
+                  ) : null}
                 </Box>
 
                 <Box
                   sx={{
                     display: "flex",
-                    flexWarp:"wrap",
+                    flexWarp: "wrap",
                     flexDirection: "column",
                     gap: 5,
                     width: 450,
                   }}
                 >
                   <Typography
-
                     textAlign="center"
                     variant="h4"
                     color="text.primary"
@@ -162,7 +152,7 @@ export default function UserProfile() {
                     justifyContent="center"
                     gap={1}
                     mb={5}
-                  >                   
+                  >
                     {User.courses?.length ? (
                       User.courses.map((c, index) => (
                         <Card
@@ -193,7 +183,7 @@ export default function UserProfile() {
                           >
                             VER MIS VIDEOS
                           </Button>
-                          </Card>
+                        </Card>
                       ))
                     ) : (
                       <Typography

@@ -38,8 +38,8 @@ export default function CourseCard({
           image={image}
           alt="img video"
         />
-         <CardContent>
-           <Rating name="read-only" readOnly value={calculeScore(score)} />
+        <CardContent>
+          <Rating name="read-only" readOnly value={calculeScore(score)} />
         </CardContent>
         <Typography
           textAlign="center"

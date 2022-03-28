@@ -55,18 +55,19 @@ export default function CourseCard({
   const [addCart, setAddCart] = useState(false);
 
   return (
-    <Box p={1}>
+    <Box p={1} width={320}>
       <Card elevation={0}>
-        <Typography sx={{ mb: 1 }} paddingLeft={1} variant="h6">
-          {title}
-        </Typography>
         <CardMedia
           title={title}
           component="img"
-          height="300"
+          height="500"
+          width="500"
           image={image}
           alt="img video"
         />
+        <Typography sx={{ mb: 1 }} paddingLeft={1} paddingTop={2} variant="h5">
+          {title}
+        </Typography>
         <Typography
           textAlign="center"
           variant="h6"
@@ -103,7 +104,6 @@ export default function CourseCard({
         >
           <ExpandMoreIcon />
         </ExpandMore>
-
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Descripción:</Typography>
@@ -116,6 +116,8 @@ export default function CourseCard({
           component={Link}
           to={`/courses/${id}`}
           endIcon={<AddIcon size="large" />}
+          color="secondary"
+          style={{ backgroundColor: "#000" }}
         >
           VER
         </Button>

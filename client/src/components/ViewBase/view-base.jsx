@@ -24,7 +24,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function ViewBase({ carousel, steps }) {
   const dispatch = useDispatch();
   let courses2 = useSelector((state) => state.getCourses.getAllCourses);
-  let courses = courses2.slice(0, 4);
+  let courses = courses2.slice(0, 10);
   useEffect(() => {
     dispatch(getAllCourses());
   }, [dispatch]);
@@ -39,46 +39,45 @@ export default function ViewBase({ carousel, steps }) {
         <div className="navBar-container">
           <NavBar />
         </div>
+        <h1>VIDEO</h1>
         {carousel && <div className="carousel-container">{carousel}</div>}
       </div>
       <div className="title">
         <h2>⇩ VESTIDOS DESTACADOS ⇩</h2>
       </div>
-      <div className="Separador">
-        {courses?.map((c, i) => (
-          <Grid key={i} item xs={12} sm={6} md={3} lg={3}>
-            <Item sx={{ minWidth: 270, maxWidth: 280 }}>
-              <Card
-                id={c._id}
-                title={c.title}
-                image={c.img}
-                score={c.score}
-                price={c.price}
-                course={c}
-              />
-            </Item>
-          </Grid>
-        ))}
+      <div className="container-slider">
+        <br />
+        <Grid container align="center">
+          {courses?.length >= 0 ? (
+            <>
+              {courses?.map((c, i) => (
+                <Grid key={i} item xs={12} sm={6} md={3} lg={3}>
+                  <Item sx={{ minWidth: 270, maxWidth: 280 }}>
+                    <Card
+                      id={c._id}
+                      title={c.title}
+                      image={c.img}
+                      description={c.description}
+                      score={c.score}
+                      price={c.price}
+                      course={c}
+                    />
+                  </Item>
+                </Grid>
+              ))}
+            </>
+          ) : (
+            <h1>Loading</h1>
+          )}
+        </Grid>
+        <br />
       </div>
       <div className="title">
         <h2>⬇ ¿VENI A VISITARNOS? ⬇</h2>
       </div>
-      <div align="center">
-        <div className="prueba">{steps}</div>
-      </div>
-      <div className="prueba2">
-        <br />
-        <div className="title2">
-          <h2> EMPRESAS ASOCIADAS </h2>
-        </div>
-        <div className="icons">
-          <DiGithubFull /> <DiDotnet /> <DiWindows /> <DiStackoverflow />{" "}
-          <DiNetmagazine />
-        </div>
-        <br />
-        <br />
-        <br />
-      </div>
+      <h1>Agendar con Google Tu Cita</h1>
+      <hr />
+      <div className="prueba2"></div>
       <div className="footer-container">
         <Footer />
       </div>

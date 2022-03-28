@@ -7,19 +7,15 @@ import { getUserInfo } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 
 export default function Home() {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-useEffect(() => {
-  dispatch(getUserInfo());
-}, [dispatch])
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
 
   return (
     <div>
-      <ViewBase
-        carousel={<Carousel />}
-        courses={<CoursesTop />}
-        steps={<CarouselStep />}
-      />
+      <ViewBase courses={<CoursesTop />} steps={<CarouselStep />} />
     </div>
   );
 }
