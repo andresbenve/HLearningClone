@@ -3,3 +3,5 @@ package-lock.json
 mercadopago.txt
 users.json
 .env
+.env.development
+.env.production
