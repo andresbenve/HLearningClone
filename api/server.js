@@ -24,9 +24,9 @@ require("./src/utils/auth/passport");
 require("dotenv").config();
 
 const SECRET_KEY = "miclavesecreta";
-const PORT = 9000;
+const PORT = 8000;
 const MONGO_URI =
-  "mongodb+srv://andresbenve:benit345@cluster0.dnv90.mongodb.net/test";
+  "mongodb://localhost:27017/HLearning?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
 //Crea el servidor
 const app = express();
 app.use(cookieParser());
