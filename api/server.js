@@ -20,14 +20,13 @@ const multer = require("multer");
 const session = require("express-session");
 const passport = require("passport");
 const path = require("path");
-const exphbs = require("express-handlebars");
-
 require("./src/utils/auth/passport");
+require("dotenv").config();
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV || "production"}`,
-});
-
+const SECRET_KEY = "miclavesecreta";
+const PORT = 9000;
+const MONGO_URI =
+  "mongodb+srv://andresbenve:benit345@cluster0.dnv90.mongodb.net/test";
 //Crea el servidor
 const app = express();
 app.use(cookieParser());
@@ -42,7 +41,7 @@ app.use(
 app.use(passport.initialize());
 app.use(
   session({
-    secret: "miclavesecreta",
+    secret: SECRET_KEY,
     saveUninitialized: false,
     resave: false,
   })
@@ -83,8 +82,8 @@ app.use(multer({ storage }).single("pictures"));
 app.use("/", routers);
 
 // DB Config
-const db = process.env.MONGO_URI;
-const port = process.env.PORT || 7070;
+const db = MONGO_URI;
+const port = PORT || 9000;
 
 // Connect to MongoDB
 mongoose
