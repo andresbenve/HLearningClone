@@ -20,10 +20,6 @@ export default function Filters({ setCurrentPage }) {
   const [filterCategories, setFilterCategories] = useState("");
   const [filterPrice, setFilterPrice] = useState("");
 
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
-
   function handleSelectCategories(e) {
     e.preventDefault();
     setCurrentPage(1);

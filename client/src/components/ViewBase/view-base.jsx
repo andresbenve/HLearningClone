@@ -15,6 +15,7 @@ import Card from "../Card/Card";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Grid, Typography } from "@material-ui/core";
+import Button from "@mui/material/Button";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -43,7 +44,7 @@ export default function ViewBase({ carousel, steps }) {
         {carousel && <div className="carousel-container">{carousel}</div>}
       </div>
       <div className="title">
-        <h2>⇩ VESTIDOS DESTACADOS ⇩</h2>
+        <h2>⇩ ULTIMOS VESTIDOS ⇩</h2>
       </div>
       <div className="container-slider">
         <br />
@@ -73,9 +74,17 @@ export default function ViewBase({ carousel, steps }) {
         <br />
       </div>
       <div className="title">
-        <h2>⬇ ¿VENI A VISITARNOS? ⬇</h2>
+        <h2>⇩ ¿VENI A VISITARNOS? ⇩</h2>
       </div>
-      <h1>Agendar con Google Tu Cita</h1>
+      <div align="center">
+        <Button
+          variant="contained"
+          type="submit"
+          style={{ backgroundColor: "#000" }}
+        >
+          AGENDA TU CITA EN EL CALENDARIO BENVE
+        </Button>
+      </div>
       <hr />
       <div className="prueba2"></div>
       <div className="footer-container">

@@ -63,6 +63,15 @@ function Login() {
       <Navbar />
       <div className={s.body}>
         <div className={s.formulario}>
+          <div className={s.inputcontenedor}>
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "#000" }}
+            >
+              SING IN WITH GOOGLE
+            </Button>
+          </div>
           <h1 className={s.h1}>Login</h1>
           <div className={s.contenedor}>
             <form onSubmit={(e) => handleSubmit(e)}>

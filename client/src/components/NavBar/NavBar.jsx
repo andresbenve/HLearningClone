@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <>
       <Nav>
-        <NavLink to="/">
+        <NavLink to="/home">
           <img src={Logo} alt="logo" height="140" width="140" />
         </NavLink>
         <Bars />

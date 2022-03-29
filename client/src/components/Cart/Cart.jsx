@@ -157,7 +157,26 @@ function Cart() {
                     })}
                   </Grid>
                 ) : (
-                  <h1>Empty Cart</h1>
+                  <div>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                    <h1>Empty Cart</h1>
+                  </div>
                 )}
               </Box>
               <Box
